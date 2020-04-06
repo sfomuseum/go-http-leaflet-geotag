@@ -1,8 +1,42 @@
 # go-http-leaflet-geotag
 
+![](docs/images/camera_sfo.png)
+
+Go HTTP middleware for the Leaflet.GeotagPhoto plugin.
+
 ## Important
 
-This is work in progress.
+Documentation is incomplete.
+
+## An abbreviated example
+
+This is an _abbreviated example_ of code to demonstrate appending `Leaflet.GeotagPhoto` related handlers to an `http.ServeMux` instance and updating a user-defined `http.Handler` to append `Leaflet.GeotagPhoto` Javascript and CSS links to its output. For a complete example please consult [cmd/example/main.go](cmd/example/main.go). The (Javascript) code for the web application itself is contained in the HTML files in the [templates/html](templates/html) directory.
+
+```
+import (
+	"github.com/sfomuseum/go-http-leaflet-geotag"
+	"net/http"
+)
+
+func main() {
+
+	// code...
+     	
+	geotag_opts := geotag.DefaultLeafletGeotagOptions()
+	
+	mux := http.NewServeMux()
+
+	geotag.AppendAssetHandlers(mux)
+
+	camera_handler, _ := PageHandler(t, "camera")
+
+	camera_handler = geotag.AppendResourcesHandler(camera_handler, geotag_opts)
+
+	mux.Handle("/camera/", camera_handler)
+
+	// code
+}	
+```
 
 ## See also
 
