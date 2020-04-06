@@ -19,11 +19,11 @@ func DefaultLeafletGeotagOptions() *LeafletGeotagOptions {
 	opts := &LeafletGeotagOptions{
 		CSS: []string{
 			"/css/Leaflet.GeotagPhoto.css",
+			"/css/highlight.js.default.min.css",
 		},
 		JS: []string{
-			"/javascript/Leaflet.GeotagPhoto.Camera.js",
-			"/javascript/Leaflet.GeotagPhoto.CameraControl.js",			
-			"/javascript/Leaflet.GeotagPhoto.Crosshair.js",
+			"/javascript/Leaflet.GeotagPhoto.js",
+			"/javascript/highlight.min.js",			
 		},
 	}
 

@@ -51,7 +51,7 @@ func main() {
 		t, err = t.ParseGlob(*path_templates)
 
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Failed to parse templates (%s), %v", *path_templates, err)
 		}
 
 	} else {
@@ -67,38 +67,56 @@ func main() {
 			t, err = t.Parse(string(body))
 
 			if err != nil {
-				log.Fatal(err)
+				log.Fatalf("Failed to parse template (%s), %v", name, err)
 			}
 		}
 	}
 
+	geotag_opts := geotag.DefaultLeafletGeotagOptions()
+	
 	mux := http.NewServeMux()
+
+	err = geotag.AppendAssetHandlers(mux)
+
+	if err != nil {
+		log.Fatalf("Failed to append leaflet-geotag asset handler, %v", err)
+	}
 
 	camera_handler, err := PageHandler(t, "camera")
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to create camera handler, %v", err)
 	}
-
-	geotag_opts := geotag.DefaultLeafletGeotagOptions()
 
 	camera_handler = geotag.AppendResourcesHandler(camera_handler, geotag_opts)
 
 	mux.Handle("/camera/", camera_handler)
 
-	err = geotag.AppendAssetHandlers(mux)
+	crosshair_handler, err := PageHandler(t, "crosshair")
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to create crosshair handler, %v", err)
 	}
 
+	crosshair_handler = geotag.AppendResourcesHandler(crosshair_handler, geotag_opts)
+
+	mux.Handle("/crosshair/", crosshair_handler)
+
+	index_handler, err := PageHandler(t, "index")
+
+	if err != nil {
+		log.Fatalf("Failed to create index handler, %v", err)
+	}
+
+	mux.Handle("/", index_handler)	
+	
 	endpoint := fmt.Sprintf("%s:%d", *host, *port)
 	log.Printf("Listening for requests on %s\n", endpoint)
 
 	err = http.ListenAndServe(endpoint, mux)
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to start server, %v", err)
 	}
 
 }
