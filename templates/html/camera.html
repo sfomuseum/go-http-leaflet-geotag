@@ -99,18 +99,20 @@
     </div>
     <script>
       var map = L.map('map', {
-        center: [52.43369, 6.83442],
-        zoom: 17,
+        center: [37.61799, -122.370943],	// SFO
+        zoom: 14,
         minZoom: 6,
-        maxZoom: 18
+        maxZoom: 17
       })
 
       var baseLayer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>'
       }).addTo(map)
 
-      var cameraPoint = [6.83442, 52.43369]
-      var targetPoint = [6.83342, 52.43469]
+     // note that we pass coordinates as lon, lat
+     
+      var cameraPoint = [-122.369499, 37.624837]
+      var targetPoint = [-122.370943, 37.61799]
 
       var points = {
         type: 'Feature',

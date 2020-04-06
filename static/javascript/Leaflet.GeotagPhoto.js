@@ -6,9 +6,7 @@ L = 'default' in L ? L['default'] : L;
 var GeotagPhotoCrosshair = L.Evented.extend({
   options: {
     controlCrosshairImg: '../images/crosshair-icon.svg',
-      // crosshairHTML: '<img alt="Center of the map; crosshair location" title="Crosshair" src="' + options.controlCrosshairImg + '" width="100px" />'
-      
-    crosshairHTML: '<img alt="Center of the map; crosshair location" title="Crosshair" src="" width="100px" />'
+    crosshairHTML: '<img alt="Center of the map; crosshair location" title="Crosshair" src="/images/crosshair.svg" width="100px" />'
   },
 
   initialize: function initialize(options) {
