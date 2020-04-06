@@ -11,7 +11,7 @@
 // static/images/marker.svg
 // DO NOT EDIT!
 
-package leaflet
+package geotag
 
 import (
 	"github.com/whosonfirst/go-bindata-assetfs"
