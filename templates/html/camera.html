@@ -1,5 +1,5 @@
 {{ define "camera" }}
-{{ include "inc_head" }}
+{{ template "inc_head" . }}
     <style>
       body {
         position: absolute;
@@ -174,5 +174,5 @@
       updateSidebar()
       updateAngle()
     </script>
-    {{ include "inc_foot" }}
+    {{ template "inc_foot" . }}
     {{ end }}

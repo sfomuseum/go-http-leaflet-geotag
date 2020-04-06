@@ -22,7 +22,7 @@ bake-assets:
 	@PATH=$(PATH):$(CWD)/bin bin/go-bindata-assetfs -pkg geotag -o assets.go static static/javascript static/css static/images
 
 debug:
-	go run -mod vendor examples/map/main.go -templates 'templates/html/*.html'
+	go run -mod vendor cmd/example/main.go -templates 'templates/html/*.html'
 
 js:
 	curl -s -o static/javascript/Leaflet.GeotagPhoto.Camera.js https://raw.githubusercontent.com/sfomuseum/Leaflet.GeotagPhoto/master/src/Leaflet.GeotagPhoto.Camera.js
