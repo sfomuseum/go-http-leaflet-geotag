@@ -8,9 +8,18 @@ Go HTTP middleware for the Leaflet.GeotagPhoto plugin.
 
 Documentation is incomplete.
 
-## An abbreviated example
+## Example
 
-This is an _abbreviated example_ of code to demonstrate appending `Leaflet.GeotagPhoto` related handlers to an `http.ServeMux` instance and updating a user-defined `http.Handler` to append `Leaflet.GeotagPhoto` Javascript and CSS links to its output. For a complete example please consult [cmd/example/main.go](cmd/example/main.go). The (Javascript) code for the web application itself is contained in the HTML files in the [templates/html](templates/html) directory.
+```
+$> go run -mod vendor cmd/example/main.go 
+2020/04/06 11:28:37 Listening for requests on localhost:8080
+```
+
+## An abbreviated code example
+
+This is an _abbreviated example_ of code to demonstrate appending `Leaflet.GeotagPhoto` related handlers to an `http.ServeMux` instance and updating a user-defined `http.Handler` to append `Leaflet.GeotagPhoto` Javascript and CSS links to its output.
+
+_Error handling has been removed for the sake of brevity._
 
 ```
 import (
@@ -34,9 +43,11 @@ func main() {
 
 	mux.Handle("/camera/", camera_handler)
 
-	// code
+	// code...
 }	
 ```
+
+For a complete example please consult [cmd/example/main.go](cmd/example/main.go). The (Javascript) code for the web application itself is contained in the HTML files in the [templates/html](templates/html) directory.
 
 ## See also
 
