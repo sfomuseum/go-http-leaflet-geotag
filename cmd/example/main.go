@@ -73,7 +73,7 @@ func main() {
 	}
 
 	geotag_opts := geotag.DefaultLeafletGeotagOptions()
-	
+
 	mux := http.NewServeMux()
 
 	err = geotag.AppendAssetHandlers(mux)
@@ -108,8 +108,8 @@ func main() {
 		log.Fatalf("Failed to create index handler, %v", err)
 	}
 
-	mux.Handle("/", index_handler)	
-	
+	mux.Handle("/", index_handler)
+
 	endpoint := fmt.Sprintf("%s:%d", *host, *port)
 	log.Printf("Listening for requests on %s\n", endpoint)
 
