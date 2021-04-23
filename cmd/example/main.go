@@ -1,9 +1,11 @@
 package main
 
 import (
+	"context"
 	"errors"
 	"flag"
-	"fmt"
+	_ "fmt"
+	"github.com/aaronland/go-http-server"
 	"github.com/sfomuseum/go-http-leaflet-geotag"
 	"github.com/sfomuseum/go-http-leaflet-geotag/templates/html"
 	"html/template"
@@ -35,39 +37,15 @@ func PageHandler(templates *template.Template, t_name string) (http.Handler, err
 
 func main() {
 
-	server_uri := flag.String("server-uri", "http://localhost:8080, "A valid aaronland/go-http-server URI")
+	server_uri := flag.String("server-uri", "http://localhost:8080", "A valid aaronland/go-http-server URI")
 
 	flag.Parse()
 
+	ctx := context.Background()
+
 	t := template.New("example")
 
-	var err error
-
-	if *path_templates != "" {
-
-		t, err = t.ParseGlob(*path_templates)
-
-		if err != nil {
-			log.Fatalf("Failed to parse templates (%s), %v", *path_templates, err)
-		}
-
-	} else {
-
-		for _, name := range templates.AssetNames() {
-
-			body, err := templates.Asset(name)
-
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			t, err = t.Parse(string(body))
-
-			if err != nil {
-				log.Fatalf("Failed to parse template (%s), %v", name, err)
-			}
-		}
-	}
+	t, err := t.ParseFS(html.FS, "*.html")
 
 	geotag_opts := geotag.DefaultLeafletGeotagOptions()
 
@@ -107,10 +85,15 @@ func main() {
 
 	mux.Handle("/", index_handler)
 
-	endpoint := fmt.Sprintf("%s:%d", *host, *port)
-	log.Printf("Listening for requests on %s\n", endpoint)
+	s, err := server.NewServer(ctx, *server_uri)
 
-	err = http.ListenAndServe(endpoint, mux)
+	if err != nil {
+		log.Fatalf("Failed to start server '%s', %v", *server_uri, err)
+	}
+
+	log.Printf("Listening for requests on %s\n", s.Address())
+
+	err = s.ListenAndServe(ctx, mux)
 
 	if err != nil {
 		log.Fatalf("Failed to start server, %v", err)
