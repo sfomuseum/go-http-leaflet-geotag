@@ -5,7 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/sfomuseum/go-http-leaflet-geotag"
-	"github.com/sfomuseum/go-http-leaflet-geotag/assets/templates"
+	"github.com/sfomuseum/go-http-leaflet-geotag/templates/html"
 	"html/template"
 	"log"
 	"net/http"
@@ -35,10 +35,7 @@ func PageHandler(templates *template.Template, t_name string) (http.Handler, err
 
 func main() {
 
-	host := flag.String("host", "localhost", "...")
-	port := flag.Int("port", 8080, "...")
-
-	path_templates := flag.String("templates", "", "An optional string for local templates. This is anything that can be read by the 'templates.ParseGlob' method.")
+	server_uri := flag.String("server-uri", "http://localhost:8080, "A valid aaronland/go-http-server URI")
 
 	flag.Parse()
 
