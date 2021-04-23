@@ -1,5 +1,5 @@
 debug:
-	go run -mod vendor cmd/example/main.go -templates 'templates/html/*.html'
+	go run -mod vendor cmd/example/main.go
 
 js:
 	curl -s -o static/javascript/Leaflet.GeotagPhoto.Camera.js https://raw.githubusercontent.com/sfomuseum/Leaflet.GeotagPhoto/master/src/Leaflet.GeotagPhoto.Camera.js

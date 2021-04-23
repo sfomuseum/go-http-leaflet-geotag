@@ -2,9 +2,8 @@ package main
 
 import (
 	"context"
-	"errors"
 	"flag"
-	_ "fmt"
+	"fmt"
 	"github.com/aaronland/go-http-server"
 	"github.com/sfomuseum/go-http-leaflet-geotag"
 	"github.com/sfomuseum/go-http-leaflet-geotag/templates/html"
@@ -18,10 +17,12 @@ func PageHandler(templates *template.Template, t_name string) (http.Handler, err
 	t := templates.Lookup(t_name)
 
 	if t == nil {
-		return nil, errors.New("Missing 'map' template")
+		return nil, fmt.Errorf("Missing '%s' template", t_name)
 	}
 
 	fn := func(rsp http.ResponseWriter, req *http.Request) {
+
+		rsp.Header().Set("Content-type", "text/html")
 
 		err := t.Execute(rsp, nil)
 
