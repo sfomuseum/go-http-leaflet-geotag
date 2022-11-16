@@ -4,11 +4,11 @@
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-211.2 372.9 48.2 48.2"
 	 style="enable-background:new -211.2 372.9 48.2 48.2;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#4A4A4A;}
-	.st1{opacity:0.2;}
+	.st0{fill:#ffffff;opacity: 1.0;}
+	.st1{opacity:0.4;fill:#4A4A4A;}
 	.st2{opacity:1.0;fill:transparent;}	
 </style>
-<circle class="st0" cx="-187.1" cy="397" r="8.3"/>
 <circle class="st1" cx="-187.1" cy="397" r="22"/>
+<circle class="st0" cx="-187.1" cy="397" r="8.3"/>
 <circle class="st2" cx="-187.1" cy="397" r="22" style="stroke:#ffffff;stroke-opacity:1;stroke-width:3;stroke-dasharray:none"/>
 </svg>
