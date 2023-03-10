@@ -1,5 +1,5 @@
 debug:
-	go run -mod vendor cmd/example/main.go
+	go run -mod vendor cmd/example/main.go -javascript-at-eof
 
 images:
 	curl -s -o static/images/camera-icon.svg https://raw.githubusercontent.com/sfomuseum/Leaflet.GeotagPhoto/master/images/camera-icon.svg

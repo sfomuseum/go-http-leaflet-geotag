@@ -98,6 +98,7 @@
       </samp></pre>
     </div>
     <script>
+	 window.addEventListener("load", function load(event){     
       var map = L.map('map', {
         center: [37.61799, -122.370943],	// SFO
         zoom: 14,
@@ -171,7 +172,8 @@
       slider.addEventListener('change', updateAngle)
 
       updateSidebar()
-      updateAngle()
+	     updateAngle()
+	     });
     </script>
     {{ template "inc_foot" . }}
     {{ end }}

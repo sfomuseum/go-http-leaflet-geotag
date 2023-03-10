@@ -4,12 +4,13 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/aaronland/go-http-server"
-	"github.com/sfomuseum/go-http-leaflet-geotag"
-	"github.com/sfomuseum/go-http-leaflet-geotag/templates/html"
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/aaronland/go-http-server"
+	"github.com/sfomuseum/go-http-leaflet-geotag"
+	"github.com/sfomuseum/go-http-leaflet-geotag/templates/html"
 )
 
 func PageHandler(templates *template.Template, t_name string) (http.Handler, error) {
@@ -39,6 +40,7 @@ func PageHandler(templates *template.Template, t_name string) (http.Handler, err
 func main() {
 
 	server_uri := flag.String("server-uri", "http://localhost:8080", "A valid aaronland/go-http-server URI")
+	js_eof := flag.Bool("javascript-at-eof", false, "Append JavaScript resources to end of HTML file.")
 
 	flag.Parse()
 
@@ -49,6 +51,7 @@ func main() {
 	t, err := t.ParseFS(html.FS, "*.html")
 
 	geotag_opts := geotag.DefaultLeafletGeotagOptions()
+	geotag_opts.AppendJavaScriptAtEOF = *js_eof
 
 	mux := http.NewServeMux()
 
