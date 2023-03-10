@@ -66,6 +66,7 @@
       </samp></pre>
     </div>
     <script>
+	 window.addEventListener("load", function load(event){     
       var map = L.map('map', {
         center: [37.61799, -122.370943],	// SFO
         zoom: 13,
@@ -89,7 +90,8 @@
         hljs.highlightBlock(outputElement)
       }
 
-      updateSidebar()
+	     updateSidebar()
+	     });
     </script>
 {{ template "inc_foot" . }}
 {{ end }}
