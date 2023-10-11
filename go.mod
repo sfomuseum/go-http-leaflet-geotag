@@ -13,5 +13,5 @@ require (
 	github.com/aaronland/go-roster v1.0.0 // indirect
 	github.com/akrylysov/algnhsa v1.0.0 // indirect
 	github.com/aws/aws-lambda-go v1.37.0 // indirect
-	golang.org/x/net v0.8.0 // indirect
+	golang.org/x/net v0.17.0 // indirect
 )
